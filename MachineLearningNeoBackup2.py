@@ -81,7 +81,7 @@ def cosine_similarity(a,u,v): #a = sample dict, u = first dict, v = second dict
      
     def dot(u,v):  #Yeah I know I should be using classes for these o welle
         dot = 0
-        for comp in u:
+        for comp in all_chars:
             dot += u[comp]*v[comp]
         return dot
     
@@ -102,23 +102,7 @@ def predict(file):
     test = process(file)
     
     dist_neo,dist_eng = cosine_similarity(test,neo_train,eng_train)
-    print("the neo distance is {} radians".format(dist_neo))
-    print("the eng distance is {} radians".format(dist_eng))
-    
-    if dist_neo < dist_eng: #conclude neo
-        return 'Neo'
-    elif dist_eng < dist_neo: #conclude eng
-        return 'English'
-    else:
-        return 'unknown'
-    
-    neo_train = process('neotrainingtext.txt')
-    eng_train = process('engtrainingtext.txt')
-    test = process(file)
-    
-    dist_neo = distance(test,neo_train)
     print("the neo distance is {}".format(dist_neo))
-    dist_eng = distance(test,eng_train)
     print("the eng distance is {}".format(dist_eng))
     
     if dist_neo < dist_eng: #conclude neo
@@ -127,6 +111,7 @@ def predict(file):
         return 'English'
     else:
         return 'unknown'
+
 #neo_train = process('neotrainingtext.txt')
 #sorted_neo_train = sorted_by_freq(neo_train)
 #print(sorted_neo_train)
